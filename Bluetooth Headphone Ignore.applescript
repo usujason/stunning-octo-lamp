@@ -6,10 +6,7 @@
 repeat
     set statusOld to checkStatus()
     set statusNew to checkStatus()
-    repeat while statusOld is equal to statusNew
-        delay 5 --Change this value if you want to change how often we check
-        set statusNew to checkStatus()
-    end repeat
+
     if statusNew is true then
         tell application "System Preferences" to activate
         tell application "System Preferences"
@@ -25,6 +22,13 @@ repeat
     else
         -- Nothing more to do here if the device is disconnected or gone
     end if
+    
+    repeat while statusOld is equal to statusNew
+        delay 5 --Change this value if you want to change how often we check
+        set statusNew to checkStatus()
+    end repeat
+    
+    
 end repeat
 
 on checkStatus()
